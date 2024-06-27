@@ -7,9 +7,9 @@ if [ -z $1 ]; then
     exit 1
 fi
 
-# check if gcc is installed
-if ! command -v gcc &> /dev/null; then
-    echo "Error: gcc is not installed"
+# check if g++ is installed
+if ! command -v g++ &> /dev/null; then
+    echo "Error: g++ is not installed"
     exit 1
 fi
 
@@ -28,11 +28,11 @@ echo "> Compiling \"$FOLDER/$FILE_SRC\""
 
 # build the source file
 if [ -z $2 ]; then
-    gcc $1 -o $CWD/.bin/$FOLDER/$FILE_OUT
-    echo "> gcc $1 -o ./bin/$FOLDER/$FILE_OUT"
+    g++ $1 -o $CWD/.bin/$FOLDER/$FILE_OUT
+    echo "> g++ $1 -o ./bin/$FOLDER/$FILE_OUT"
 else
-    gcc $1 $2 -o $CWD/.bin/$FOLDER/$FILE_OUT
-    echo "> gcc $1 $2 -o ./bin/$FOLDER/$FILE_OUT"
+    g++ $1 $2 -o $CWD/.bin/$FOLDER/$FILE_OUT
+    echo "> g++ $1 $2 -o ./bin/$FOLDER/$FILE_OUT"
 fi
 
 echo "> Running \"$FOLDER/$FILE_OUT\""
