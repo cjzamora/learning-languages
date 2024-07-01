@@ -28,11 +28,11 @@ echo "> Compiling \"$FOLDER/$FILE_SRC\""
 
 # build the source file
 if [ -z $2 ]; then
-    gcc $1 -o $CWD/.bin/$FOLDER/$FILE_OUT
-    echo "> gcc $1 -o ./bin/$FOLDER/$FILE_OUT"
+    gcc $1 -o $CWD/.bin/$FOLDER/$FILE_OUT -Wall
+    echo "> gcc $1 -o ./bin/$FOLDER/$FILE_OUT -Wall"
 else
-    gcc $1 $2 -o $CWD/.bin/$FOLDER/$FILE_OUT
-    echo "> gcc $1 $2 -o ./bin/$FOLDER/$FILE_OUT"
+    gcc $1 $2 -o $CWD/.bin/$FOLDER/$FILE_OUT -Wall
+    echo "> gcc $1 $2 -o ./bin/$FOLDER/$FILE_OUT -Wall"
 fi
 
 echo "> Running \"$FOLDER/$FILE_OUT\""
