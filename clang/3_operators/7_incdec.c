@@ -3,10 +3,6 @@
 int main() {
     int x = 10, results;
 
-    // unary operator - (minus)
-    results = -x;
-    printf("Unary operator -x is: %d\n", results);
-
     // unary operator + (plus)
     results = +x;
     printf("Unary operator +x is: %d\n", results);
@@ -32,21 +28,6 @@ int main() {
     // x = x - 1;
     results = x--;
     printf("Post-decrement of x is: %d\n", results);
-
-    // ! operator
-    results = !x;
-    printf("Logical NOT of x is: %d\n", results);
-
-    // & operator
-    int* z = &x;
-    printf("Address of x is: %p\n", z);
-
-    // * operator
-    printf("Value at address of x is: %d\n", *z);
-
-    // sizeof operator
-    int size = sizeof(x);
-    printf("Size of x is: %d\n", size);
 
     return 0;
 }
