@@ -28,45 +28,50 @@ int main() {
     /**
      * Why e and f are not equal?
      * 
-     * f is unsigned char, 0xfb in hex is 1111 1011 in binary
-     * as an unsigned char, it is interpreted directly as 251 in decimal
+     * signed char is (8-bit) 1000 0000 to 0111 1111 (-128 to 127)
+     * unsigned char is (8-bit) 0000 0000 to 1111 1111 (0 to 255)
      * 
-     * e is signed char, 0xfb in hex is still 1111 1011 in binary
-     * however, for a signed char, the MSB is used as the signed bit:
-     *    - if MSB is 0, the number is positive
-     *    - if MSB is 1, the number is negative (two's complement representation)
+     * 0xfb = 1111 1011 in binary and 251 in decimal
+     * as signed char the MSB will determine wheter it's negative or positive.
      * 
-     * since MSB is 1, the number is negative, and the two's complement representation
-     * will be used to get the decimal value of e:
+     * if MSB = 1, then it's negative
+     * if MSB = 0, then it's positive
      * 
-     * 1. invert all bits: 0000 0100
-     * // add 1 to (LSB) if LSB = 0, then it becomes 1, if LSB = 1,
-     * // then it becomes 0 carry over to the next bit
-     * 2. add 1: 0000 0100 + 1 = 0000 0101
-     * 3. result in decimal: 5, but since the original number was negative,
-     *    the result is -5
+     * to find it's value when it's negative, we use two's complement method
      * 
-     * More example:
+     * 0xfb = 1111 1011 (MSB is 1, so it's negative)
+     * // invert the bits
+     * 0x04 = 0000 0100
+     * // add 1 to LSB
+     * // - if LSB is 0, then it becomes 1
+     * // - if LSB is 1, then it becomes 0 and carry over to the next bit
+     * 0x05 = 0000 0101
+     * // convert to decimal
+     * 0x05 = 5 since MSB is 1, it's negative
+     * // final value
+     * -5
      * 
-     * signed char 0xfa in hex is 1111 1010 in binary
-     * it is a negative number, therefore we need to convert it using two's complement
+     * Another example: 
      * 
-     * 1. invert all bits: 0000 0101
-     * // add 1 to (LSB) if LSB = 0, then it becomes 1, if LSB = 1,
-     * // then it becomes 0 carry over to the next bit
-     * 2. add 1: 0000 0101 + 1 = 0000 0110
-     * 3. result in decimal: 6, but since the original number was negative,
-     *    the result is -6
-     * 
-     * 1111 1010 in binary is 0xfa in hex
-     * 0000 0101 in binary is 5 in decimal
-     * 0000 0110 in binary is 6 in decimal
+     * 0x80 = 1000 0000 in binary and 128 in decimal
+     * 0x80 = 1000 0000 (MSB is 1, so it's negative)
+     * // invert the bits
+     * 0x7f = 0111 1111
+     * // add 1 to LSB
+     * 0x80 = 1000 0000 (0111 1111 + 0000 0001 = 1000 0000)
+     * // convert to decimal
+     * 0x80 = 128 since MSB is 1, it's negative
+     * // final value
+     * -128
      */
     if (e == f) {
         printf("Char e and unsigned char f are equal\n");
     } else {
         printf("Char e and unsigned char f are not equal\n");
     }
-    
-    return 0;
+
+    unsigned int x = -9;
+    printf("Unsigned int x: %u\n", x);
+
+    printf("%d\n", 0b01111111);
 }
