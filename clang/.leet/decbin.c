@@ -116,8 +116,18 @@ int main() {
     printf("\n");
 
     // print the binary format
-    printf("decbin(): %s\n", decbin(num));
-    printf("decbin_bw(): %s\n", decbin_bw(num));
+    char* bin = decbin(num);
+    printf("decbin(): %s\n", bin);
+
+    // free up the memory
+    free(bin);
+
+    // print the binary format
+    bin = decbin_bw(num);
+    printf("decbin_bw(): %s\n", bin);
+
+    // free up the memory
+    free(bin);
 
     return 0;
 }
