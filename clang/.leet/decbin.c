@@ -3,10 +3,57 @@
 #include <stdlib.h>
 
 /**
- * A function that returns a binary string format
- * of a given integer.
+ * Decimal to binary conversion without
+ * using the bitwise operators.
+ * 
+ * @param num the number to convert
+ * @return the binary format of the number
  */
-char* to_binary(int num) {
+char* decbin(int num) {
+    // quotient
+    int quot = num;
+    // get type size
+    int size_t = 16;
+    // get the final size + spaces + null terminator
+    int size = 16 + (size_t / 4);
+    // create a char buffer to store the binary format
+    // + 1 for the null terminator
+    // + n for spaces
+    char* buffer = (char*) malloc(size);
+
+    // get the remainder until 0
+    int index = size - 1;
+    while(index >= 0) {
+        // add null terminator
+        if (index == size - 1) {
+            buffer[index--] = '\0';
+            continue;
+        }
+
+        // add spaces every 4 bits
+        if (index % 5 == 4) {
+            buffer[index--] = ' ';
+        } else {
+            // get the remainder
+            int rem = quot % 2;
+            // store the remainder in the buffer
+            buffer[index--] = rem + '0';
+            // get the quotient
+            quot = quot / 2;
+        }
+    }
+
+    return buffer;
+}
+
+/**
+ * Decimal to binary conversion using
+ * the bitwise operators.
+ * 
+ * @param num the number to convert
+ * @return the binary format of the number
+ */
+char* decbin_bw(int num) {
     // get the size of the integer
     // int size = sizeof(num) * 8;
     int size_t = 16;
@@ -18,8 +65,9 @@ char* to_binary(int num) {
     // + n for spaces
     char* buffer = (char*) malloc(size);
 
-    // loop through size
+    // save bit position
     int cursor = 0;
+    // iterate through the size of the integer
     for(int i = size - 1; i >= 0; i --) {
         // add null terminator
         if (i == size - 1) {
@@ -27,15 +75,15 @@ char* to_binary(int num) {
             continue;
         }
 
-        // add spaces for every after 4 bits
+        // add spaces every 4 bits
         if (i % 5 == 4) {
             buffer[i] = ' ';
         } else {
             // get the bit at the n-th position by using
             // the right shift operator, then mask it to 1
             // using the bitwise AND operator, by doing so
-            // it will cause every bits to 0 except the last bit
-            // the result will be 1 if the last bit is 1 and 0 if 0
+            // it will make every bits to 0 except the last bit
+            // the result will be 1 if the last bit is 1 otherwise 0
             // 
             // ex: 5 = 0000 0101
             // 1. 5 >> 0 = 0000 0101 & 0000 0001 = 0000 0001 = 1
@@ -67,10 +115,9 @@ int main() {
     scanf("%d", &num);
     printf("\n");
 
-    // convert the number to binary
-    char* binary = to_binary(num);
     // print the binary format
-    printf("%s\n", binary);
+    printf("decbin(): %s\n", decbin(num));
+    printf("decbin_bw(): %s\n", decbin_bw(num));
 
     return 0;
 }
