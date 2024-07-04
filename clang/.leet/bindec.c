@@ -78,7 +78,8 @@ int bindec_bw(char* bin) {
         // 
         // then why add the bit?
         // so we can determine if the resulting
-        // number is odd or even.
+        // number is odd or even. kind of like the
+        // carry bit in binary addition.
         dec = (dec << 1) + bit;
     }
 
