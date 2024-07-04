@@ -80,6 +80,9 @@ int bindec_bw(char* bin) {
         // so we can determine if the resulting
         // number is odd or even. kind of like the
         // carry bit in binary addition.
+        //
+        // if the bit is 1 or 0 it influences the
+        // result of the next decimal number.
         dec = (dec << 1) + bit;
     }
 
