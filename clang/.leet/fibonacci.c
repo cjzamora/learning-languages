@@ -17,7 +17,7 @@ int main() {
         // print the first number
         printf("%d\n", first);
 
-        // calculate the sum if preceding
+        // calculate the sum of the next result
         // first and second numbers
         next = first + second;
         // move the first number to second number
