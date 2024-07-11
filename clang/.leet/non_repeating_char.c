@@ -1,6 +1,9 @@
 #import <stdio.h>
 #import <stdlib.h>
 
+// max string length
+#define SIZE 255
+
 // create a key value mapping
 struct Map {
     char key;
@@ -8,17 +11,22 @@ struct Map {
 };
 
 int main() {
-    // given "abacabd"
-    char str[] = "abaccabdde";
-    // get the length of the string
-    int len = sizeof(str) / sizeof(str[0]) - 1;
+    // string buffer
+    char str[255];
+    printf("Enter a string: ");
+    scanf(" %s", str);
 
     // create a character map and it's count
-    struct Map map[len]; 
+    struct Map map[SIZE]; 
     // current used index
     int curr = 0;
     // loop through the string
-    for(int i = 0; i < len; i++) {
+    for(int i = 0; i < SIZE; i++) {
+        // if null terminator is found
+        if (str[i] == '\0') {
+            break;
+        }
+
         // check if the character exists
         int exists = 0, index = 0;
         // loop through the map
