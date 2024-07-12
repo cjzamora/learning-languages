@@ -4,26 +4,16 @@
 .align 4, 0x90
 
 _main:
-    # Write "Hello, World!\n" to stdout
+    movl    $0x2000004,         %eax    ; syscall number for sys_write
+    movl    $1,                 %edi    ; file descriptor 1 (stdout)
+    leaq    message(%rip),      %rsi    ; pointer to the message   
+    movl    $15,                %edx    ; message length
+    syscall                             ; write the message 
 
-    # syscall number for sys_write
-    movl $0x2000004, %eax
-    # file descriptor 1 is stdout
-    movl $1, %edi        
-    # pointer to the message          
-    leaq message(%rip), %rsi    
-    # message length   
-    movl $15, %edx                 
-    syscall
+    movl    $0x2000001,         %eax    ; syscall number for sys_exit
+    xorl    %edi,               %edi    ; exit code 0 
+    syscall                             ; exit the program
 
-    # Exit the program
-
-    # syscall number for sys_exit
-    movl $0x2000001, %eax    
-    # exit code 0      
-    xorl %edi, %edi                
-    syscall
-
-.section __TEXT,__cstring
+.section __TEXT, __cstring
 message:
-    .asciz "Hello, World!\n"
+    .asciz  "Hello, World!\n"
