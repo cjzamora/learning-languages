@@ -58,7 +58,7 @@ int bindec_bw(char* bin) {
         // 56 + '0' = 56 + 48 = 104 ascii (letter 'h' in ASCII)
         int bit = bin[i] - '0';
 
-        // what happends here?
+        // what happened here?
         // we shift the decimal number to the left
         // by 1, then add the bit to it
         // 
