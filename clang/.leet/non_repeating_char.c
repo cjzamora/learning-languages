@@ -1,5 +1,5 @@
-#import <stdio.h>
-#import <stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 // max string length
 #define SIZE 255
